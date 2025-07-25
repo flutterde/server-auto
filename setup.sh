@@ -51,8 +51,13 @@ sudo mkdir -p /home/${DOCKER_USER}/docker
 sudo chown -R ${DOCKER_USER}:${DOCKER_USER} /home/${DOCKER_USER}/docker
 cd /home/${DOCKER_USER}/docker
 
+# Clone
 echo "Cloning the repository..."
 git clone ${CLONE_URL} ${PROJECT_NAME} >>/home/${DOCKER_USER}/docker/logs.log
+sudo -u ${DOCKER_USER} git config --global --add safe.directory /home/${DOCKER_USER}/docker/${PROJECT_NAME}
+sudo chown -R ${DOCKER_USER}:${DOCKER_USER} /home/${DOCKER_USER}/docker/${PROJECT_NAME}
+
+
 
 echo "Building the project..."
 cd ${PROJECT_NAME}
